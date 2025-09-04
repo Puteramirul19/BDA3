@@ -1,5 +1,169 @@
 ﻿@{
-    ViewData["Title"] = "New UMA";
+    ViewData["Title"] = "New UMA Request";
 }
 
-<h5>Hello world</h5>
+@section Styles {
+    <style>
+        .btn-create {
+            background-color: #5d5386;
+            color: white;
+        }
+
+        .form-staff {
+            margin-bottom: 2rem;
+        }
+    </style>
+}
+
+<div class="content-inner">
+    <div class="container-fluid">
+        <!-- Begin Page Header-->
+        <div class="row">
+            <div class="page-header">
+                <div class="d-flex align-items-center">
+                    <h2 class="page-header-title">UMA Tracking</h2>
+                </div>
+            </div>
+        </div>
+        <!-- End Page Header -->
+
+        <div class="row flex-row">
+            <div class="col-xl-12">
+                <div class="widget has-shadow">
+                    <div class="widget-body sliding-tabs">
+                        <ul class="nav nav-tabs form-tab" id="ul-form-tab" role="tablist">
+                            <li class="nav-item">
+                                <a class="nav-link active" id="base-tab-1" data-toggle="tab" href="#tab-1" role="tab" aria-controls="tab-1" aria-selected="true">Create Details</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link disabled" id="base-tab-2" data-toggle="tab" href="#tab-2" role="tab" aria-controls="tab-2" aria-selected="false">Process Details</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link disabled" id="base-tab-3" data-toggle="tab" href="#tab-3" role="tab" aria-controls="tab-3" aria-selected="false">Submit Details</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link disabled" id="base-tab-4" data-toggle="tab" href="#tab-4" role="tab" aria-controls="tab-4" aria-selected="false">Complete Details</a>
+                            </li>
+                        </ul>
+
+                        <div class="tab-content pt-3">
+                            <div class="tab-pane fade active show" id="tab-1" role="tabpanel" aria-labelledby="base-tab-1">
+                                <form id="formCreateUMA" action="/UMA/Create" method="post" enctype="multipart/form-data">
+                                    <div class="form-group row">
+                                        <div class="col-sm-6">
+                                            <label class="form-control-label">Ref No.<span class="text-danger ml-2">*</span></label>
+                                            <input type="text" class="form-control" name="RefNo" required>
+                                        </div>
+                                        <div class="col-sm-6">
+                                            <label class="form-control-label">ERMS Document No.<span class="text-danger ml-2">*</span></label>
+                                            <input type="text" class="form-control" name="ERMSDocNo" required>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group row">
+                                        <div class="col-sm-12">
+                                            <label class="form-control-label">Justification of Lost<span class="text-danger ml-2">*</span></label>
+                                            <textarea class="form-control" name="Justification" rows="3" placeholder="Application certificate" required></textarea>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group row">
+                                        <div class="col-sm-6">
+                                            <label class="form-control-label">Proj No./Agreement BD No./Ref No.<span class="text-danger ml-2">*</span></label>
+                                            <input type="text" class="form-control" name="ProjectNo" required>
+                                        </div>
+                                        <div class="col-sm-6">
+                                            <label class="form-control-label">BD No.<span class="text-danger ml-2">*</span></label>
+                                            <input type="text" class="form-control" name="BDNo" required>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group row">
+                                        <div class="col-sm-6">
+                                            <label class="form-control-label">BD Requestor's Name<span class="text-danger ml-2">*</span></label>
+                                            <input type="text" class="form-control" name="BDRequesterName" required>
+                                        </div>
+                                        <div class="col-sm-6">
+                                            <label class="form-control-label">Value Date<span class="text-danger ml-2">*</span></label>
+                                            <input type="date" class="form-control" name="ValueDate" required>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group row">
+                                        <div class="col-sm-6">
+                                            <label class="form-control-label">Company Code<span class="text-danger ml-2">*</span></label>
+                                            <input type="text" class="form-control" name="CompanyCode" required>
+                                        </div>
+                                        <div class="col-sm-6">
+                                            <label class="form-control-label">Business Area<span class="text-danger ml-2">*</span></label>
+                                            <input type="text" class="form-control" name="BusinessArea" required>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group row">
+                                        <div class="col-sm-6">
+                                            <label class="form-control-label">Name on BD<span class="text-danger ml-2">*</span></label>
+                                            <input type="text" class="form-control" name="NameOnBD" required>
+                                        </div>
+                                        <div class="col-sm-6">
+                                            <label class="form-control-label">BD Amount<span class="text-danger ml-2">*</span></label>
+                                            <input type="number" step="0.01" class="form-control" name="BDAmount" required>
+                                        </div>
+                                    </div>
+
+                                    <h5>Supporting Documents</h5>
+                                    <table class="table table-bordered">
+                                        <thead>
+                                            <tr>
+                                                <th>No</th>
+                                                <th>Name</th>
+                                                <th>Action</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td>1</td>
+                                                <td>Scan Bank Draft</td>
+                                                <td><input type="file" class="form-control-file" name="ScannedBankDraft"></td>
+                                            </tr>
+                                            <tr>
+                                                <td>2</td>
+                                                <td>Supporting document cancellation/UMA</td>
+                                                <td><input type="file" class="form-control-file" name="SupportingDocument"></td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+
+                                    <h5>Additional Document</h5>
+                                    <table class="table table-bordered">
+                                        <thead>
+                                            <tr>
+                                                <th>No</th>
+                                                <th>Name</th>
+                                                <th>Attachment</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td colspan="3">No data available in table</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+
+                                    <div class="form-group">
+                                        <button type="button" class="btn btn-secondary">Add Attachment</button>
+                                    </div>
+
+                                    <div class="form-group text-right">
+                                        <button type="submit" name="Status" value="Draft" class="btn btn-secondary">Save as Draft</button>
+                                        <button type="submit" name="Status" value="Submit" class="btn btn-create">Submit</button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

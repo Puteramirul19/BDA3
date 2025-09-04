@@ -1,0 +1,104 @@
+﻿@{
+    ViewData["Title"] = "UMA Tracking";
+}
+
+<div class="content-inner">
+    <div class="container-fluid">
+        <!-- UMA TRACKING -->
+        <div class="row">
+            <div class="col-xl-12">
+                <div class="widget has-shadow">
+                    <div class="widget-body">
+                        <h5>UMA TRACKING</h5>
+
+                        <!-- Stage Progress -->
+                        <div class="progress-step-container" style="margin: 20px 0;">
+                            <div class="progress-step-wrapper">
+                                <div class="progress-step active">
+                                    <div class="step-number">1</div>
+                                    <div class="step-label">Create<br>CM - TGBS</div>
+                                </div>
+
+                                <div class="progress-step">
+                                    <div class="step-number">2</div>
+                                    <div class="step-label">Submit to Bank<br>CM - TGBS</div>
+                                </div>
+
+                                <div class="progress-step">
+                                    <div class="step-number">3</div>
+                                    <div class="step-label">Submit to ANM<br>CM - TGBS</div>
+                                </div>
+
+                                <div class="progress-step">
+                                    <div class="step-number">4</div>
+                                    <div class="step-label">Incoming Payment<br>CM - TGBS</div>
+                                </div>
+
+                                <div class="progress-step">
+                                    <div class="step-number">5</div>
+                                    <div class="step-label">Completed<br></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    .progress-step-container {
+        padding: 20px 0;
+    }
+
+    .progress-step-wrapper {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        position: relative;
+    }
+
+        .progress-step-wrapper::before {
+            content: '';
+            position: absolute;
+            top: 20px;
+            left: 40px;
+            right: 40px;
+            height: 2px;
+            background: #e9ecef;
+            z-index: 1;
+        }
+
+    .progress-step {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        z-index: 2;
+        background: white;
+        padding: 0 10px;
+    }
+
+    .step-number {
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        background: #e9ecef;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: bold;
+        margin-bottom: 8px;
+    }
+
+    .progress-step.active .step-number {
+        background: #5d5386;
+        color: white;
+    }
+
+    .step-label {
+        text-align: center;
+        font-size: 12px;
+        line-height: 1.2;
+    }
+</style>
