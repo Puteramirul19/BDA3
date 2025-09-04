@@ -1,67 +1,50 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Text;
-using BDA.Entities;
-using Microsoft.AspNetCore.Http;
-
-namespace BDA.ViewModel
-{
-    public class UMAViewModel
-    {
-        public string Id { get; set; }
-        public string BankDraftId { get; set; }
-        public string Status { get; set; }
-        public string RefNo { get; set; }
-        public string BDNo { get; set; }
-        public string BDRequesterName { get; set; }
-        public string ProjectNo { get; set; }
-        public string ERMSDocNo { get; set; }
-        public string CoCode { get; set; }
-        public string BA { get; set; }
-        public string NameOnBD { get; set; }
-        public decimal? BDAmount { get; set; }
-        public string Comment { get; set; }
-
-        //Draft & Submitted Section
-        public string RequesterId { get; set; }
-        public string Justification { get; set; }
-        public string OthersRemark { get; set; }
-        public DateTime? DraftedOn { get; set; }
-        public DateTime? SubmittedOn { get; set; }
-        public DateTime? WithdrewOn { get; set; }
-        public string CreatedById { get; set; }
-        public string CreatedByName { get; set; }
-        public string UserAction { get; set; }
-
-        //Approve Section
-        public string ApproverId { get; set; }
-        public DateTime? ApprovedOn { get; set; }
-
-        //Accept Section
-        public string TGBSAcceptanceId { get; set; }
-        public DateTime? TGBSAcceptedOn { get; set; }
-
-        //TGBSProcess Section
-        public string InstructionLetterRefNo { get; set; }
-        public string TGBSProcesserId { get; set; }
-        public string BankProcessType { get; set; }
-        public DateTime? TGBSProcessedOn { get; set; }
-
-        //ReconReceive Section
-        public DateTime? ReceivedDate { get; set; }
-        public string ReceivedById { get; set; }
-        public DateTime? ReceivedOn { get; set; }
-
-        //ConfirmationSection
-        public DateTime? ConfirmedOn { get; set; }
-
-        // UMA Specific Fields
-        public DateTime? ValueDate { get; set; }
-        public string CompanyCode { get; set; }
-        public string BusinessArea { get; set; }
-
-        // Stage tracking
-        public int CurrentStage { get; set; } = 1; // 1=Create, 2=Submit to Bank, 3=Submit to ANM, 4=Incoming Payment, 5=Completed
-    }
+﻿@model BDA.ViewModel.LostViewModel
+@{
+    ViewData["Title"] = "UMA Tracking";
 }
+
+<div class="content-inner">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="page-header">
+                <div class="d-flex align-items-center">
+                    <h2 class="page-header-title">UMA TRACKING</h2>
+                </div>
+            </div>
+        </div>
+
+        <div class="row flex-row">
+            <div class="col-xl-12 col-md-12">
+                <div class="widget has-shadow">
+                    <div class="widget-body sliding-tabs">
+                        <ul class="nav nav-tabs form-tab" id="ul-form-tab" role="tablist">
+                            <li class="nav-item">
+                                <a class="nav-link active" id="base-tab-1" data-toggle="tab" href="#tab-1" role="tab" aria-controls="tab-1" aria-selected="true">Create Details</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link disabled" id="base-tab-2" data-toggle="tab" href="#tab-2" role="tab" aria-controls="tab-2" aria-selected="false">Process Details</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link disabled" id="base-tab-3" data-toggle="tab" href="#tab-3" role="tab" aria-controls="tab-3" aria-selected="false">Submit Details</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link disabled" id="base-tab-4" data-toggle="tab" href="#tab-4" role="tab" aria-controls="tab-4" aria-selected="false">Complete Details</a>
+                            </li>
+                        </ul>
+                        <div class="tab-content pt-3">
+                            <div class="tab-pane fade active show" id="tab-1" role="tabpanel" aria-labelledby="base-tab-1">
+                                @using (Html.BeginForm("Create", "UMA", Model, FormMethod.Post, false, new { @id = "formCreateUMA", @class = "form-horizontal needs-validation", @novalidate = "novalidate", enctype = "multipart/form-data" }))
+                                {
+                                    @Html.Partial("_CreateDetails.cshtml")
+                                    @Html.Partial("_Document.cshtml")
+                                    @Html.Partial("_ApproverList.cshtml")
+                                }
+                            </div>
+                        </div>
+                        @Html.Partial("_ActionButton.cshtml")
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
